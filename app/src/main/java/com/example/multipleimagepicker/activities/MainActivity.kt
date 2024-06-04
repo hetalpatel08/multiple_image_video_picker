@@ -41,55 +41,43 @@ class MainActivity : AppCompatActivity() {
             } else {
                 Utility.checkPermission(this)
             }
-            when {
-                _isGrant -> {
-                    val i =
-                        Intent(this, MediaChooserActivity::class.java)
-                    i.putExtra("type", "image")
-                    i.putExtra("mediaList", imageItemArrayList)
-                    startActivityForResult(i, 100)
-                }
+            if (_isGrant) {
+                val i =
+                    Intent(this, MediaChooserActivity::class.java)
+                i.putExtra("type", "image")
+                i.putExtra("mediaList", imageItemArrayList)
+                startActivityForResult(i, 100)
             }
         }
 
         binding.addVideo.setOnClickListener {
             val _isGrant: Boolean
-            when {
-                Build.VERSION.SDK_INT >= Build.VERSION_CODES.R -> {
-                    _isGrant = Utility.checkStoragePermission(this)
-                }
-                else -> {
-                    _isGrant = Utility.checkPermission(this)
-                }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                _isGrant = Utility.checkStoragePermission(this)
+            } else {
+                _isGrant = Utility.checkPermission(this)
             }
-            when {
-                _isGrant -> {
-                    val i =
-                        Intent(this, MediaChooserActivity::class.java)
-                    i.putExtra("type", "video")
-                    i.putExtra("mediaList", videoItemArrayList)
-                    startActivityForResult(i, 200)
-                }
+            if (_isGrant) {
+                val i =
+                    Intent(this, MediaChooserActivity::class.java)
+                i.putExtra("type", "video")
+                i.putExtra("mediaList", videoItemArrayList)
+                startActivityForResult(i, 200)
             }
         }
     }
 
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        when {
-            resultCode == RESULT_OK && data != null -> {
-                when (requestCode) {
-                    100 -> {
-                        val receivedMediaList =
-                            data.getSerializableExtra("mediaList") as java.util.ArrayList<ImageItem>?
-                        handleReceivedMediaList(receivedMediaList!!)
-                    }
-                    200 -> {
-                        val receivedVideoList =
-                            data.getSerializableExtra("mediaList") as java.util.ArrayList<ImageItem>?
-                        handleReceivedVideoList(receivedVideoList!!)
-                    }
-                }
+        if (resultCode == RESULT_OK && data != null) {
+            if (requestCode == 100) {
+                val receivedMediaList =
+                    data.getSerializableExtra("mediaList") as java.util.ArrayList<ImageItem>?
+                handleReceivedMediaList(receivedMediaList!!)
+            } else if (requestCode == 200) {
+                val receivedVideoList =
+                    data.getSerializableExtra("mediaList") as java.util.ArrayList<ImageItem>?
+                handleReceivedVideoList(receivedVideoList!!)
             }
         }
     }
@@ -111,7 +99,7 @@ class MainActivity : AppCompatActivity() {
                 fileImage5 = imageItem.file
             }
         }
-        if (receivedMediaList.isNotEmpty()) {
+        if (!receivedMediaList.isEmpty()) {
             val addImageCardView = findViewById<CardView>(R.id.addImage)
             addImageCardView.background = ContextCompat.getDrawable(this, R.drawable.card_uploaded_border)
         } else {
