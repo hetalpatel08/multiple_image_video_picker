@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity() {
                 fileImage5 = imageItem.file
             }
         }
-        if (!receivedMediaList.isEmpty()) {
+           if (!receivedMediaList.isEmpty()) {
             val addImageCardView = findViewById<CardView>(R.id.addImage)
             addImageCardView.background = ContextCompat.getDrawable(this, R.drawable.card_uploaded_border)
         } else {
