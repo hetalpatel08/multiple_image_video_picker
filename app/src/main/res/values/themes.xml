@@ -1,0 +1,9 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.MultipleImagePicker" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <item name="android:statusBarColor">@color/appColor</item>
+    </style>
+
+    <style name="Theme.MultipleImagePicker" parent="Base.Theme.MultipleImagePicker" />
+</resources>
