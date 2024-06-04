@@ -105,7 +105,7 @@ class MainActivity : AppCompatActivity() {
         } else {
             val addImageCardView = findViewById<CardView>(R.id.addImage)
             addImageCardView.background =
-                ContextCompat.getDrawable(this, R.drawable.card_white_border)
+                  ContextCompat.getDrawable(this, R.drawable.card_white_border)
         }
     }
 
