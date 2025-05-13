@@ -1,6 +1,6 @@
-Multiple Image Videp Picker
+Multiple Image Video Picker
 
-Multple images and videos select from gallery 
+Multiple images and videos select from gallery 
 1.Maximum 5 images select form gallery
 2.Maximum 2 Videos select from gallery
 
